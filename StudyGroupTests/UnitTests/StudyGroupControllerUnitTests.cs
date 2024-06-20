@@ -28,7 +28,7 @@ namespace StudentsApp.Tests.UnitTests
             // Arrange
             var studyGroups = new List<StudyGroup>(); // Mock list of study groups
             var studyGroupRepositoryMock = new Mock<IStudyGroupRepository>();
-            studyGroupRepositoryMock.Setup(repo => repo.GetStudyGroups()).ReturnsAsync(studyGroups);
+            studyGroupRepositoryMock.Setup(repo => repo.GetStudyGroups()).ReturnsAsync(new OkResult());
             var studyGroupController = new StudyGroupController(studyGroupRepositoryMock.Object);
 
             // Act
@@ -45,7 +45,7 @@ namespace StudentsApp.Tests.UnitTests
             var subject = "Math"; // Mock subject
             var expectedStudyGroups = new List<StudyGroup>(); // Mock list of expected study groups
             var studyGroupRepositoryMock = new Mock<IStudyGroupRepository>();
-            studyGroupRepositoryMock.Setup(repo => repo.SearchStudyGroups(subject)).ReturnsAsync(expectedStudyGroups);
+            studyGroupRepositoryMock.Setup(repo => repo.SearchStudyGroups((Subject)Enum.Parse(typeof(Subject), subject))).ReturnsAsync(new OkResult());
             var studyGroupController = new StudyGroupController(studyGroupRepositoryMock.Object);
 
             // Act

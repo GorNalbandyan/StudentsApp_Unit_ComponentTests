@@ -5,12 +5,12 @@ namespace StudyGroupFeature
 {
     public class StudyGroup
     {
-        public StudyGroup(int studyGroupId, string name, Subject subject, DateTime create {
+        public StudyGroup(int studyGroupId, string name, Subject subject, DateTime createDate) {
             StudyGroupId = studyGroupId;
             Name = name;
             Subject = subject;
             CreateDate = createDate;
-            Users = users;
+            //Users = users;
         }
 
         //Some logic will be missing to validate values according to acceptance criteria,

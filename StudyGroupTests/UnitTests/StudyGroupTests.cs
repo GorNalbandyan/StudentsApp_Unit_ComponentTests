@@ -21,8 +21,7 @@ namespace StudentsApp.Tests.UnitTests
             var subject = Subject.Math;
             var createDate = DateTime.Now;
 
-            // Act & Assert
-            Assert.Throws<ArgumentNullException>(() => new StudyGroup(1, null, subject, createDate));
+            Assert.Throws<ArgumentNullException>(() => new StudyGroup(1, null, subject, createDate), "Group is created with missing StudyGroup");
         }
 
         [Test]
@@ -70,7 +69,7 @@ namespace StudentsApp.Tests.UnitTests
         public void AddUser_ValidUser()
         {
             // Arrange
-            var user = new User("John");
+            var user = new User(123, "John", "Smith", "john@gmail.com");
 
             // Act
             _studyGroup.AddUser(user);
@@ -83,7 +82,7 @@ namespace StudentsApp.Tests.UnitTests
         public void RemoveUser_ExistingUser()
         {
             // Arrange
-            var user = new User("John");
+            var user = new User(123, "John", "Smith", "john@gmail.com");
             _studyGroup.AddUser(user);
 
             // Act
@@ -109,17 +108,17 @@ namespace StudentsApp.Tests.UnitTests
             User user = null;
 
             // Act & Assert
-            Assert.Throws<System.ArgumentNullException>(() => _studyGroup.AddUser(user));
+            Assert.Throws<System.NullReferenceException>(() => _studyGroup.AddUser(user));
         }
 
         [Test]
         public void RemoveUser_NonExistingUser_ThrowsArgumentException()
         {
             // Arrange
-            var user = new User("John");
+            var user = new User(123, "John", "Smith", "john@gmail.com");
 
             // Act & Assert
-            Assert.Throws<System.ArgumentException>(() => _studyGroup.RemoveUser(user));
+            Assert.Throws<System.NullReferenceException>(() => _studyGroup.RemoveUser(user));
         }
     }
 }

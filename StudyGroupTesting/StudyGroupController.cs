@@ -21,7 +21,7 @@ namespace StudyGroupFeature
         }
         public async Task<IActionResult> SearchStudyGroups(string subject)
         {
-            var studyGroups = await _studyGroupRepository.SearchStudyGroups(subject);
+            var studyGroups = await _studyGroupRepository.SearchStudyGroups((Subject)Enum.Parse(typeof(Subject), subject, true));
             return new OkObjectResult(studyGroups);
         }
         public async Task<IActionResult> JoinStudyGroup(int studyGroupId, int userId)
